@@ -9,11 +9,11 @@
 			</vertical>
 		</horizontal>
 	</vertical>
-  <modal show-event='device-modal' move-to-center='true' size-delta-x='90' size-delta-y='25' click-off-closes='true'>
-    <vertical pad='10'>
+  <modal show-event='device-modal' move-to-center='true' size-delta-x='120' size-delta-y='25' click-off-closes='true'>
+    <vertical pad-top='3' pad-bottom='3'>
       <text text='~device-name' font-size='10' font-align='Center'/>
       <text text='~device-type' font-size='5' font-align='Center'/>
-      <dropdown-list-setting value='light-setting' choices='lighting-events' text='Light Event' apply-on-change='true' bind-value='true'/>
+      <dropdown-list-setting id='dropdown' value='light-setting' choices='lighting-events' text='Light Event' apply-on-change='true' bind-value='true'/>
     </vertical>
   </modal>
 </bg>

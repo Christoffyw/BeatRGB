@@ -22,6 +22,8 @@ namespace beatRGB.UI.Controllers
         Device[] devices = Plugin.client.GetAllControllerData();
 
         [UIComponent("device-list")] internal CustomListTableData DeviceList = new CustomListTableData();
+        [UIComponent("dropdown")] DropDownListSetting dropdown;
+
         [UIValue("lighting-events")]
         private List<object> options = new object[] { "Back Lasers", "Ring Lights", "Left Rotating Lasers", "Right Rotating Lasers", "Center Lights", "Boost Light Colors", "Interscope Left", "Interscope Right" }.ToList();
         [UIAction("#post-parse")]
@@ -68,6 +70,7 @@ namespace beatRGB.UI.Controllers
             set
             {
                 Configuration.PluginConfig.Instance.devices[dn] = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -76,8 +79,8 @@ namespace beatRGB.UI.Controllers
         {
             DeviceName = devices[row].Name;
             DeviceType = devices[row].Type.ToString();
-            LightSetting = GetLightSetting(dn); 
-            transform.GetChild(0).GetChild(1).GetChild(1).GetChild(2).GetChild(1).gameObject.GetComponent<DropDownListSetting>().Value = GetLightSetting(dn);
+            LightSetting = GetLightSetting(dn);
+            dropdown.Value = GetLightSetting(dn);
             parserParams.EmitEvent("device-modal");
         }
 

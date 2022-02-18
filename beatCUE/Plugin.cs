@@ -35,6 +35,11 @@ namespace beatRGB
     //internal static List<IRGBDevice> memorymodules = new List<IRGBDevice>();
     internal static OpenRGBClient client = new OpenRGBClient(name: "My OpenRGB Client", autoconnect: true, timeout: 1000);
 
+        public void MenuLoaded()
+        {
+            client.LoadProfile("beforeBeatsaber");
+        }
+
         public void WriteResourceToFile(string resourceName, string fileName)
         {
             using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
@@ -63,6 +68,9 @@ namespace beatRGB
 
             //surface.LoadDevices(CorsairDeviceProvider.Instance);
             //surface.LoadDevices(CoolerMasterDeviceProvider.Instance);
+            client.SaveProfile("beforeBeatsaber");
+
+            BS_Utils.Utilities.BSEvents.menuSceneActive += MenuLoaded;
 
             UI.UICreator.CreateMenu();
         }
@@ -92,6 +100,13 @@ namespace beatRGB
         {
             Log.Debug("OnApplicationStart");
             beatRGBController go = new GameObject("beatRGBController").AddComponent<beatRGBController>();
+        }
+
+        [OnExit]
+        public void OnApplicationExit()
+        {
+            client.LoadProfile("beforeBeatsaber");
+            client.DeleteProfile("beforeBeatsaber");
         }
     }
 }

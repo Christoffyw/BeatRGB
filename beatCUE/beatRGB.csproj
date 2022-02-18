@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>beatRGB</RootNamespace>
     <AssemblyName>beatRGB</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
@@ -20,6 +20,7 @@
     <!--<PathMap>$(AppOutputBase)=X:\$(AssemblyName)\</PathMap>-->
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Optimize>false</Optimize>
@@ -50,6 +51,12 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="BS_Utils">
+      <HintPath>S:\SteamLibrary\steamapps\common\Beat Saber\Plugins\BS_Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="GameplayCore">
+      <HintPath>S:\SteamLibrary\steamapps\common\Beat Saber\Beat Saber_Data\Managed\GameplayCore.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>S:\SteamLibrary\steamapps\common\Beat Saber\Libs\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
@@ -57,24 +64,6 @@
     </Reference>
     <Reference Include="OpenRGB.NET">
       <HintPath>Libs\OpenRGB.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Brushes">
-      <HintPath>..\..\BSMG\PCMODDING\RGB.NET-master\bin\net45\RGB.NET.Brushes.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Core">
-      <HintPath>..\..\BSMG\PCMODDING\RGB.NET-master\bin\net45\RGB.NET.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Decorators">
-      <HintPath>..\..\BSMG\PCMODDING\RGB.NET-master\bin\net45\RGB.NET.Decorators.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Devices.CoolerMaster">
-      <HintPath>..\..\BSMG\PCMODDING\RGB.NET-master\bin\net45\RGB.NET.Devices.CoolerMaster.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Devices.Corsair">
-      <HintPath>..\..\BSMG\PCMODDING\RGB.NET-master\bin\net45\RGB.NET.Devices.Corsair.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Groups">
-      <HintPath>..\..\BSMG\PCMODDING\RGB.NET-master\bin\net45\RGB.NET.Groups.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -130,6 +119,7 @@
   <ItemGroup>
     <Compile Include="Configuration\EnumConverter.cs" />
     <Compile Include="Harmony Patches\LightPatch.cs" />
+    <Compile Include="Harmony Patches\SongStart.cs" />
     <Compile Include="Lighting\Extensions.cs" />
     <Compile Include="Lighting\GroupLighting.cs" />
     <Compile Include="Plugin.cs" />
@@ -146,7 +136,6 @@
   <ItemGroup>
     <None Include="Directory.Build.props" Condition="Exists('Directory.Build.props')" />
     <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')" />
-    <None Include="beatCUE.csproj.user" Condition="Exists('beatCUE.csproj.user')" />
     <EmbeddedResource Include="UI\Views\deviceManagement.bsml" />
   </ItemGroup>
   <ItemGroup>
@@ -157,12 +146,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Libs\RGB.NET.Brushes.dll" />
-    <Content Include="Libs\RGB.NET.Core.dll" />
-    <Content Include="Libs\RGB.NET.Decorators.dll" />
-    <Content Include="Libs\RGB.NET.Devices.CoolerMaster.dll" />
-    <Content Include="Libs\RGB.NET.Devices.Corsair.dll" />
-    <Content Include="Libs\RGB.NET.Groups.dll" />
+    <Content Include="Libs\OpenRGB.NET.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
