@@ -1,3 +1,3 @@
 # BeatRGB
 
-OpenRGB integration for beat saber
+OpenRGB integration for Beat Saber
